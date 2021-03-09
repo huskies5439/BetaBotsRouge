@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class BasePilotable extends SubsystemBase {
@@ -35,6 +36,15 @@ public class BasePilotable extends SubsystemBase {
         setRamp(1);
         changementRampe = true;
       }
+
+      SmartDashboard.putNumber("Angle du Gyro", getGyroAngle());
+      SmartDashboard.putNumber("Vitesse du Gyro", getGyroVitesse());
+      SmartDashboard.putNumber("Position Moyenne", getPosition());
+      SmartDashboard.putNumber("Position Gauche", getEncoderGauchePosition());
+      SmartDashboard.putNumber("Position Droite", getEncoderDroitPosition());
+      SmartDashboard.putNumber("Vitesse Moyenne", getVitesse());
+      SmartDashboard.putNumber("Vitesse Gauche", getEncoderGaucheVitesse());
+      SmartDashboard.putNumber("Vitesse Droit", getEncoderDroitVitesse());
     }
 
     public void drive(double joystickX, double joystickY) {
@@ -62,7 +72,9 @@ public class BasePilotable extends SubsystemBase {
     public double getEncoderGaucheVitesse() {
         return neoGauche.getEncoder().getVelocity();
     }
-
+    public double getVitesse() {
+        return (getEncoderGaucheVitesse() + getEncoderDroitVitesse()) / 2;
+    }
     public double getGyroAngle() {
         return gyro.getAngle();
     }
