@@ -10,9 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Drive;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.BasePilotable;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -24,7 +22,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   private XboxController pilote = new XboxController(0);
   private BasePilotable basePilotable = new BasePilotable();
-  private Drive driveCommand = new Drive(basePilotable, pilote.getY(), pilote.getX())
+  private Drive driveCommand = new Drive(basePilotable, pilote.getY(), pilote.getX());
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -52,6 +50,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return null;
   }
 }

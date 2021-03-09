@@ -1,9 +1,5 @@
 package frc.robot.commands;
 
-import java.util.function.DoubleSupplier;
-
-import com.fasterxml.jackson.databind.JsonSerializable.Base;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BasePilotable;
 
@@ -26,7 +22,7 @@ public class Drive extends CommandBase{
   
     @Override
     public void execute() {
-        basePilotable.driver(xSupplier.doubleValue(),ySupplier.doubleValue());
+        basePilotable.drive(xSupplier.doubleValue(),ySupplier.doubleValue());
     }
   
     @Override
