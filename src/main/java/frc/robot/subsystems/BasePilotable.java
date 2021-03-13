@@ -17,16 +17,19 @@ public class BasePilotable extends SubsystemBase {
 
     private boolean changementRampe = false;
 
-    private Gyro gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
+    private Gyro gyro = new ADXRS450_Gyro();
 
-    private CANSparkMax neoGauche = new CANSparkMax(0, MotorType.kBrushless);
-    private CANSparkMax neoDroit = new CANSparkMax(1, MotorType.kBrushless);
+    private CANSparkMax neoGauche = new CANSparkMax(34, MotorType.kBrushless);
+    private CANSparkMax neoDroit = new CANSparkMax(37, MotorType.kBrushless);
 
     private DifferentialDrive drive = new DifferentialDrive(neoDroit, neoGauche);
 
     public BasePilotable() {
         resetEncoder();
         setRamp(0);
+        setIdleMode(false);
+        neoGauche.setInverted(true);
+        neoDroit.setInverted(true);
     }
 
     @Override
