@@ -9,10 +9,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.commands.Drive;
+import frc.robot.commands.DriveBras;
 import frc.robot.subsystems.BasePilotable;
+import frc.robot.subsystems.Bras;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -23,6 +27,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 public class RobotContainer {
   private XboxController pilote = new XboxController(0);
   private BasePilotable basePilotable = new BasePilotable();
+  private Bras bras = new Bras();
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -30,10 +35,12 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    //basePilotable.setDefaultCommand(new Drive(basePilotable, pilote.getY(), pilote.getX()));
-    basePilotable.setDefaultCommand(new RunCommand(()->basePilotable.drive(pilote.getY(GenericHID.Hand.kLeft),pilote.getX(GenericHID.Hand.kRight)),basePilotable));
+    //basePilotable.setDefaultCommand(new Drive(pilote.getY(Hand.kLeft), pilote.getX(Hand.kLeft), basePilotable));
+    basePilotable.setDefaultCommand(new RunCommand(()-> basePilotable.drive(pilote.getY(GenericHID.Hand.kLeft), pilote.getX(GenericHID.Hand.kRight)),basePilotable));
+    //bras.setDefaultCommand(new DriveBras(bras, pilote.getY(Hand.kRight), pilote.getX(Hand.kRight)));
+    bras.setDefaultCommand(new RunCommand(() -> {bras.driveHauteur(pilote.getRawAxis(2)); bras.driveLongueur(pilote.getRawAxis(2));}, bras));
   }
-
+  
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -41,6 +48,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
   }
 
 

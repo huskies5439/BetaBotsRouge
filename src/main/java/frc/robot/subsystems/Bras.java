@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Bras extends SubsystemBase {
-  private TalonSRX brasHauteur = new TalonSRX(2);
-  private TalonSRX brasLongueur = new TalonSRX(3);
+  private TalonSRX brasHauteur = new TalonSRX(15);
+  private TalonSRX brasLongueur = new TalonSRX(16);
   private Encoder encoderHauteur = new Encoder(0, 1);
   private Encoder encoderLongueur = new Encoder(2, 3);
   public Bras() {

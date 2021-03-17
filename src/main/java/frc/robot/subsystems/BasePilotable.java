@@ -19,8 +19,8 @@ public class BasePilotable extends SubsystemBase {
 
     private Gyro gyro = new ADXRS450_Gyro();
 
-    private CANSparkMax neoGauche = new CANSparkMax(34, MotorType.kBrushless);
-    private CANSparkMax neoDroit = new CANSparkMax(37, MotorType.kBrushless);
+    private CANSparkMax neoGauche = new CANSparkMax(21, MotorType.kBrushless);
+    private CANSparkMax neoDroit = new CANSparkMax(22, MotorType.kBrushless);
 
     private DifferentialDrive drive = new DifferentialDrive(neoDroit, neoGauche);
 

@@ -10,10 +10,11 @@ public class Drive extends CommandBase{
     Double ySupplier;
 
 
-    public Drive(BasePilotable basePilotable, Double xSupplier, Double ySupplier){
+    public Drive(Double xSupplier, Double ySupplier, BasePilotable basePilotable){
         this.basePilotable = basePilotable;   
         this.xSupplier = xSupplier;
         this.ySupplier = ySupplier;
+        addRequirements(basePilotable);
     }
 
     @Override
