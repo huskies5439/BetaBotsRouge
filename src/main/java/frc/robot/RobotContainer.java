@@ -15,6 +15,7 @@ import frc.robot.commands.DriveBras;
 import frc.robot.subsystems.BasePilotable;
 import frc.robot.subsystems.Bras;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -36,9 +37,9 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     //basePilotable.setDefaultCommand(new Drive(pilote.getY(Hand.kLeft), pilote.getX(Hand.kLeft), basePilotable));
-    basePilotable.setDefaultCommand(new RunCommand(()-> basePilotable.drive(pilote.getY(GenericHID.Hand.kLeft), pilote.getX(GenericHID.Hand.kRight)),basePilotable));
+    basePilotable.setDefaultCommand(new RunCommand(()-> basePilotable.conduire(pilote.getY(GenericHID.Hand.kLeft), pilote.getX(GenericHID.Hand.kRight)),basePilotable));
     //bras.setDefaultCommand(new DriveBras(bras, pilote.getY(Hand.kRight), pilote.getX(Hand.kRight)));
-    bras.setDefaultCommand(new RunCommand(() -> {bras.driveHauteur(pilote.getRawAxis(2)); bras.driveLongueur(pilote.getRawAxis(2));}, bras));
+    //bras.setDefaultCommand(new RunCommand(() -> {bras.driveHauteur(pilote.getRawAxis(2)); bras.driveLongueur(pilote.getRawAxis(2));}, bras));
   }
   
   /**
@@ -59,6 +60,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return new RunCommand(()->basePilotable.tankDriveVolts(5,5));
   }
 }

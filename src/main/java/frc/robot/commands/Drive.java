@@ -23,7 +23,7 @@ public class Drive extends CommandBase{
   
     @Override
     public void execute() {
-        basePilotable.drive(xSupplier.doubleValue(),ySupplier.doubleValue());
+        basePilotable.conduire(xSupplier.doubleValue(),ySupplier.doubleValue());
     }
   
     @Override

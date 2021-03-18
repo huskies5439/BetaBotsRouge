@@ -19,10 +19,10 @@ public class BasePilotable extends SubsystemBase {
 
     private Gyro gyro = new ADXRS450_Gyro();
 
-    private CANSparkMax neoGauche = new CANSparkMax(21, MotorType.kBrushless);
-    private CANSparkMax neoDroit = new CANSparkMax(22, MotorType.kBrushless);
+    private CANSparkMax neoGauche = new CANSparkMax(37, MotorType.kBrushless);
+    private CANSparkMax neoDroit = new CANSparkMax(34, MotorType.kBrushless);
 
-    private DifferentialDrive drive = new DifferentialDrive(neoDroit, neoGauche);
+    private DifferentialDrive drive = new DifferentialDrive( neoGauche, neoDroit);
 
     public BasePilotable() {
         resetEncoder();
@@ -50,9 +50,16 @@ public class BasePilotable extends SubsystemBase {
       SmartDashboard.putNumber("Vitesse Droit", getEncoderDroitVitesse());
     }
 
-    public void drive(double joystickX, double joystickY) {
+    public void conduire(double joystickX, double joystickY) {
         drive.arcadeDrive(0.5 * joystickX, 0.5 * joystickY);
+ 
     }
+
+    public void tankDriveVolts(double leftVolts, double rightVolts) {
+        neoGauche.setVoltage(leftVolts);
+        neoDroit.setVoltage(-rightVolts);
+        drive.feed();
+      }
 
     private void resetEncoder() {
         neoDroit.getEncoder().setPosition(0);
