@@ -24,7 +24,7 @@ public class Pince extends SubsystemBase {
       servo.setAngle(0);
     }
     else{
-      servo.setAngle(11);
+      servo.setAngle(100);
     }
   }
 }

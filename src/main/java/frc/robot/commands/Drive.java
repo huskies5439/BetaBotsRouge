@@ -1,16 +1,18 @@
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BasePilotable;
 
 public class Drive extends CommandBase{
 
     BasePilotable basePilotable;
-    Double xSupplier;
-    Double ySupplier;
+    DoubleSupplier xSupplier;
+    DoubleSupplier ySupplier;
 
 
-    public Drive(Double xSupplier, Double ySupplier, BasePilotable basePilotable){
+    public Drive(DoubleSupplier xSupplier, DoubleSupplier ySupplier, BasePilotable basePilotable){
         this.basePilotable = basePilotable;   
         this.xSupplier = xSupplier;
         this.ySupplier = ySupplier;
@@ -23,7 +25,7 @@ public class Drive extends CommandBase{
   
     @Override
     public void execute() {
-        basePilotable.conduire(xSupplier.doubleValue(),ySupplier.doubleValue());
+        basePilotable.conduire(xSupplier.getAsDouble(),ySupplier.getAsDouble());
     }
   
     @Override

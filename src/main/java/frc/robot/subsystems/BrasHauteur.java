@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class BrasHauteur extends SubsystemBase {
@@ -22,6 +23,8 @@ public class BrasHauteur extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("hauteur", getEncoderHauteurPosition());
+    
 
   }
   public void driveHauteur(double vitesse){

@@ -43,7 +43,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    basePilotable.setDefaultCommand(new Drive(pilote.getY(Hand.kLeft), pilote.getX(Hand.kLeft), basePilotable));
+    basePilotable.setDefaultCommand(new Drive(()->pilote.getY(Hand.kLeft), ()->pilote.getX(Hand.kLeft), basePilotable));
     brasHauteur.setDefaultCommand(new DriveBrasHauteur(brasHauteur, ()->pilote.getY(Hand.kRight)));
     brasLongueur.setDefaultCommand(new DriveBrasLongueur(brasLongueur, ()->pilote.getTriggerAxis(Hand.kRight)-pilote.getTriggerAxis(Hand.kLeft)));
     

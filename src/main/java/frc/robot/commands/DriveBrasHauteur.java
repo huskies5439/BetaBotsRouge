@@ -24,9 +24,18 @@ public class DriveBrasHauteur extends CommandBase {
   @Override
   public void initialize() {}
 
+  //(bras.getPositionL() > 85000 && vitesse.getAsDouble() > 0) || (bras.getPositionL() < 0 && vitesse.getAsDouble() < 0)
+
   @Override
   public void execute() {
-    bras.driveHauteur(hauteur.getAsDouble());
+    if ((bras.getEncoderHauteurPosition() > 850 && hauteur.getAsDouble() > 0) || (bras.getEncoderHauteurPosition() < 0 && hauteur.getAsDouble() < 0))
+    {
+      bras.driveHauteur(0);
+    } 
+    else
+    {
+      bras.driveHauteur(hauteur.getAsDouble());
+    }
   }
 
   @Override

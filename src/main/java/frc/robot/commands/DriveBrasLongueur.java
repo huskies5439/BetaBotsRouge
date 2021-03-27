@@ -22,8 +22,14 @@ public class DriveBrasLongueur extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    bras.driveLongueur(longueur.getAsDouble());
+    if ((bras.getEncoderLongueurPosition() > 70000 && longueur.getAsDouble() > 0) || (bras.getEncoderLongueurPosition() < 0 && longueur.getAsDouble() < 0))
+    {
+      bras.driveLongueur(0);
+    } 
+    else
+    {
+      bras.driveLongueur(longueur.getAsDouble());
+    }
   }
   @Override
   public void end(boolean interrupted) {}
