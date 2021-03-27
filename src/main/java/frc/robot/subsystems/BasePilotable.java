@@ -23,13 +23,13 @@ public class BasePilotable extends SubsystemBase {
 
     private Gyro gyro = new ADXRS450_Gyro();
 
-    private WPI_TalonSRX neoGauche = new WPI_TalonSRX(27);
-    private WPI_TalonSRX neoDroit = new WPI_TalonSRX(34);
+    private WPI_TalonSRX neoGauche = new WPI_TalonSRX(15);
+    private WPI_TalonSRX neoDroit = new WPI_TalonSRX(16);
 
     private DifferentialDrive drive = new DifferentialDrive( neoGauche, neoDroit);
 
     public BasePilotable() {
-        resetEncoder();
+        //resetEncoder();
         setRamp(0);
         setIdleMode(false);
         neoGauche.setInverted(true);

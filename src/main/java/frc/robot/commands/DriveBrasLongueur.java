@@ -4,15 +4,17 @@
 
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BrasLongueur;
 
 public class DriveBrasLongueur extends CommandBase {
-  Double longueur;
+  DoubleSupplier longueur;
   BrasLongueur bras;
 
 
-  public DriveBrasLongueur(BrasLongueur bras, Double longueur) {
+  public DriveBrasLongueur(BrasLongueur bras, DoubleSupplier longueur) {
     this.bras = bras;
     this.longueur = longueur;
     addRequirements(bras);
@@ -21,7 +23,7 @@ public class DriveBrasLongueur extends CommandBase {
   @Override
   public void execute() {
 
-    bras.driveLongueur(longueur.doubleValue());
+    bras.driveLongueur(longueur.getAsDouble());
   }
   @Override
   public void end(boolean interrupted) {}

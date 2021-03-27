@@ -7,14 +7,14 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
 
 
 public class BrasHauteur extends SubsystemBase {
-  private Encoder encoderHauteur = new Encoder(0, 1);
-  private TalonSRX brasHauteur = new TalonSRX(15);
+  private Encoder encoderHauteur = new Encoder(2, 3);
+  private WPI_TalonSRX brasHauteur = new WPI_TalonSRX(17);
 
   /** Creates a new BrasHauteur. */
   public BrasHauteur() {}
@@ -27,10 +27,15 @@ public class BrasHauteur extends SubsystemBase {
   public void driveHauteur(double vitesse){
     brasHauteur.set(ControlMode.PercentOutput, vitesse);
   }
-  public void resetEncoders(){
+  public void resetEncoder(){
     encoderHauteur.reset();
   }
   public double getEncoderHauteurPosition(){
     return encoderHauteur.get();
+  }
+
+  public void stop()
+  {
+    driveHauteur(0);
   }
 }

@@ -5,14 +5,16 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class BrasLongueur extends SubsystemBase {
-  private TalonSRX brasLongueur = new TalonSRX(16);//Comentaire des bleus: vérifier si 15 ou 16 est le bon
-  private Encoder encoderLongueur = new Encoder(2, 3);
+  private WPI_TalonSRX brasLongueur = new WPI_TalonSRX(18);//Comentaire des bleus: vérifier si 15 ou 16 est le bon
+  private Encoder encoderLongueur = new Encoder(0, 1);
   public BrasLongueur() {
 
   }
@@ -20,16 +22,29 @@ public class BrasLongueur extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("longueur bras", getEncoderLongueurPosition());
   }
 
   public void driveLongueur(double vitesse){
-    brasLongueur.set(ControlMode.PercentOutput, vitesse);
+
+    if ((getEncoderLongueurPosition() > 85000 && vitesse > 0) || (getEncoderLongueurPosition() < 0 && vitesse < 0))
+    {
+      brasLongueur.set(ControlMode.PercentOutput, 0);
+    }else
+    {
+      brasLongueur.set(ControlMode.PercentOutput, vitesse);
+    }
   }
-  public void resetEncoders(){
+  public void resetEncoder(){
     encoderLongueur.reset();
   }
 
   public double getEncoderLongueurPosition(){
     return encoderLongueur.get();
+  }
+
+  public void stop()
+  {
+    driveLongueur(0);
   }
 }
