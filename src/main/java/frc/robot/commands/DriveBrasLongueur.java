@@ -5,17 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Bras;
+import frc.robot.subsystems.BrasLongueur;
 
-public class DriveBras extends CommandBase {
-  Double hauteur;
+public class DriveBrasLongueur extends CommandBase {
   Double longueur;
-  Bras bras;
+  BrasLongueur bras;
 
 
-  public DriveBras(Bras bras, Double hauteur, Double longueur) {
+  public DriveBrasLongueur(BrasLongueur bras, Double longueur) {
     this.bras = bras;
-    this.hauteur = hauteur;
     this.longueur = longueur;
     addRequirements(bras);
   }
@@ -23,7 +21,6 @@ public class DriveBras extends CommandBase {
   @Override
   public void execute() {
 
-    bras.driveHauteur(hauteur.doubleValue());
     bras.driveLongueur(longueur.doubleValue());
   }
   @Override

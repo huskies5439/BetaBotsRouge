@@ -10,12 +10,10 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Bras extends SubsystemBase {
-  private TalonSRX brasHauteur = new TalonSRX(15);//Comentaire des bleus: vérifier si 15 ou 16 est le bon
+public class BrasLongueur extends SubsystemBase {
   private TalonSRX brasLongueur = new TalonSRX(16);//Comentaire des bleus: vérifier si 15 ou 16 est le bon
-  private Encoder encoderHauteur = new Encoder(0, 1);
   private Encoder encoderLongueur = new Encoder(2, 3);
-  public Bras() {
+  public BrasLongueur() {
 
   }
 
@@ -23,19 +21,14 @@ public class Bras extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  public void driveHauteur(double vitesse){
-    brasHauteur.set(ControlMode.PercentOutput, vitesse);
-  }
+
   public void driveLongueur(double vitesse){
     brasLongueur.set(ControlMode.PercentOutput, vitesse);
   }
   public void resetEncoders(){
-    encoderHauteur.reset();
     encoderLongueur.reset();
   }
-  public double getEncoderHauteurPosition(){
-    return encoderHauteur.get();
-  }
+
   public double getEncoderLongueurPosition(){
     return encoderLongueur.get();
   }
