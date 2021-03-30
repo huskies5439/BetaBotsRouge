@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -18,7 +19,9 @@ public class BrasHauteur extends SubsystemBase {
   private WPI_TalonSRX brasHauteur = new WPI_TalonSRX(17);
 
   /** Creates a new BrasHauteur. */
-  public BrasHauteur() {}
+  public BrasHauteur() {
+    brasHauteur.setNeutralMode(NeutralMode.Brake);
+  }
 
   @Override
   public void periodic() {

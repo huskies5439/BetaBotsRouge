@@ -7,6 +7,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,6 +22,8 @@ public class BasePilotable extends SubsystemBase {
 
     private Gyro gyro = new ADXRS450_Gyro();
 
+    private Ultrasonic ultrason = new Ultrasonic(8, 9);
+
     private WPI_TalonSRX neoGauche = new WPI_TalonSRX(15);
     private WPI_TalonSRX neoDroit = new WPI_TalonSRX(16);
 
@@ -28,6 +31,7 @@ public class BasePilotable extends SubsystemBase {
 
     public BasePilotable() {
         //resetEncoder();
+        Ultrasonic.setAutomaticMode(true);
         setRamp(0);
         setIdleMode(false);
         neoGauche.setInverted(true);
@@ -61,32 +65,7 @@ public class BasePilotable extends SubsystemBase {
         drive.arcadeDrive(joystickX, joystickY);
  
     }
-
-    /*private void resetEncoder() {
-        neoDroit.getEncoder().setPosition(0);
-        neoGauche.getEncoder().setPosition(0);
-    }
-    public double getEncoderDroitPosition() {
-        return neoDroit.getEncoder().getPosition();
-    }
-    public double getEncoderGauchePosition() {
-        return neoGauche.getEncoder().getPosition();
-    }
-
-    public double getPosition() {
-        return (getEncoderGauchePosition() + getEncoderDroitPosition()) / 2;
-    }
-
-    public double getEncoderDroitVitesse() {
-        return neoDroit.getEncoder().getVelocity();
-    }
-    public double getEncoderGaucheVitesse() {
-        return neoGauche.getEncoder().getVelocity();
-    }
-    public double getVitesse() {
-        return (getEncoderGaucheVitesse() + getEncoderDroitVitesse()) / 2;
-    }
-   */public double getGyroAngle() {
+    public double getGyroAngle() {
         return gyro.getAngle();
     }
 
@@ -96,6 +75,10 @@ public class BasePilotable extends SubsystemBase {
 
     public void resetGyro(){
         gyro.reset();
+    }
+
+    public double getUlrtasonicRange(){
+        return ultrason.getRangeMM();
     }
     public void setRamp(double rampValue) {
         neoDroit.configOpenloopRamp(rampValue);

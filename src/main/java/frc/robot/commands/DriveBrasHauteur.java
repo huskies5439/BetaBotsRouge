@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BrasHauteur;
 
@@ -28,13 +29,16 @@ public class DriveBrasHauteur extends CommandBase {
 
   @Override
   public void execute() {
-    if ((bras.getEncoderHauteurPosition() > 850 && hauteur.getAsDouble() > 0) || (bras.getEncoderHauteurPosition() < 0 && hauteur.getAsDouble() < 0))
+    if ((bras.getEncoderHauteurPosition() > 650 && hauteur.getAsDouble() > 0) || (bras.getEncoderHauteurPosition() < 0 && hauteur.getAsDouble() < 0))
     {
       bras.driveHauteur(0);
+      SmartDashboard.putNumber("test2", hauteur.getAsDouble());
     } 
     else
     {
       bras.driveHauteur(hauteur.getAsDouble());
+      SmartDashboard.putNumber("test2", hauteur.getAsDouble());
+
     }
   }
 

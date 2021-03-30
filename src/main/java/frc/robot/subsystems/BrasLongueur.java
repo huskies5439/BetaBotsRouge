@@ -36,7 +36,7 @@ public class BrasLongueur extends SubsystemBase {
 
   public double getEncoderLongueurPosition(){
     //return encoderLongueur.get();
-    return brasLongueur.getSelectedSensorPosition();
+    return -brasLongueur.getSelectedSensorPosition();
   }
 
   public void stop()
