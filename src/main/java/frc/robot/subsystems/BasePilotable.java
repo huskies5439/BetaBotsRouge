@@ -13,11 +13,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class BasePilotable extends SubsystemBase {
-
 
     private boolean changementRampe = false;
 
@@ -52,6 +50,11 @@ public class BasePilotable extends SubsystemBase {
      // SmartDashboard.putNumber("Vitesse Moyenne", getVitesse());
      // SmartDashboard.putNumber("Vitesse Gauche", getEncoderGaucheVitesse());
      // SmartDashboard.putNumber("Vitesse Droit", getEncoderDroitVitesse());
+    }
+
+    public void conduireAuto(double vitesseY){
+        drive.arcadeDrive(vitesseY, 0, false);
+
     }
 
     public void conduire(double joystickX, double joystickY) {
